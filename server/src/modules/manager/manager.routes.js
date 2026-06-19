@@ -1,8 +1,9 @@
 import express from "express";
 
 import {
-  createDepartment
-} from "./department.controller.js";
+  createManager,
+    getManagers
+} from "./manager.controller.js";
 
 import {
   authenticate
@@ -12,30 +13,20 @@ import {
   authorize
 } from "../../middleware/role.middleware.js";
 
-import {
-  getDepartments,
-  getDepartmentById
-} from "./department.controller.js";
-
 const router = express.Router();
 
 router.post(
   "/",
   authenticate,
   authorize("ADMIN"),
-  createDepartment
+  createManager
 );
 
 router.get(
   "/",
   authenticate,
-  getDepartments
-);
-
-router.get(
-  "/:id",
-  authenticate,
-  getDepartmentById
+  authorize("ADMIN"),
+  getManagers
 );
 
 export default router;

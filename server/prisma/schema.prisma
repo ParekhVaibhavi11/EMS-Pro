@@ -66,10 +66,11 @@ model Department {
   id          String      @id @default(cuid())
 
   name        String      @unique
-
   description String?
 
   isActive    Boolean     @default(true)
+
+  managerId   String?
 
   employees   Employee[]
 
