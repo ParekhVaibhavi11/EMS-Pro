@@ -3,7 +3,8 @@ import { Toaster } from "react-hot-toast";
 
 import LoginPage from "./pages/auth/LoginPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-
+import EmployeesPage
+from "./pages/admin/EmployeesPage";
 function App() {
   return (
     <>
@@ -19,6 +20,11 @@ function App() {
         <Route
           path="/admin"
           element={<AdminDashboard />}
+        />
+
+        <Route
+          path="/employees"
+          element={<EmployeesPage />}
         />
 
       </Routes>

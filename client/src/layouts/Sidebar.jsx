@@ -10,42 +10,52 @@ import {
   Settings,
   X
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const menuItems = [
   {
     name: "Dashboard",
+    path: "/admin",
     icon: LayoutDashboard,
   },
   {
     name: "Employees",
+    path: "/employees",
     icon: Users,
   },
   {
     name: "Managers",
+    path: "/managers",
     icon: UserCog,
   },
   {
     name: "Departments",
+    path: "/departments",
     icon: Building2,
   },
   {
     name: "Attendance",
+    path: "/attendance",
     icon: Calendar,
   },
   {
     name: "Leaves",
+    path: "/leaves",
     icon: FileText,
   },
   {
     name: "Payroll",
+    path: "/payroll",
     icon: Wallet,
   },
   {
     name: "Reports",
+    path: "/reports",
     icon: BarChart3,
   },
   {
     name: "Settings",
+    path: "/settings",
     icon: Settings,
   },
 ];
@@ -93,16 +103,17 @@ function Sidebar({
         <nav className="p-4 space-y-2">
 
           {menuItems.map((item) => (
-            <button
-              key={item.name}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition"
-            >
-              <item.icon size={18} />
+            <Link
+                key={item.name}
+                to={item.path}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition"
+              >
+                <item.icon size={18} />
 
-              <span>
-                {item.name}
-              </span>
-            </button>
+                <span>
+                  {item.name}
+                </span>
+              </Link>
           ))}
 
         </nav>
