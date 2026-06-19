@@ -1,10 +1,29 @@
+import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
+import LoginPage from "./pages/auth/LoginPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+
 function App() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-900">
-        EMS Pro
-      </h1>
-    </div>
+    <>
+      <Toaster />
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={<LoginPage />}
+        />
+
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
+
+      </Routes>
+
+    </>
   );
 }
 
