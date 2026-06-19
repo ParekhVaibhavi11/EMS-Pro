@@ -2,7 +2,8 @@ import { createDepartmentSchema } from "./department.validation.js";
 import { createDepartmentService } from "./department.service.js";
 import {
   getDepartmentsService,
-  getDepartmentByIdService
+  getDepartmentByIdService,
+  assignManagerService
 } from "./department.service.js";
 
 
@@ -72,6 +73,33 @@ export const getDepartments =
     } catch (error) {
 
       res.status(404).json({
+        success: false,
+        message: error.message
+      });
+
+    }
+
+  };
+
+  export const assignManager =
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await assignManagerService(
+          req.params.departmentId,
+          req.body.managerId
+        );
+
+      res.status(200).json({
+        success: true,
+        data: result
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
         success: false,
         message: error.message
       });

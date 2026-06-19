@@ -14,7 +14,8 @@ import {
 
 import {
   getDepartments,
-  getDepartmentById
+  getDepartmentById,
+  assignManager
 } from "./department.controller.js";
 
 const router = express.Router();
@@ -36,6 +37,13 @@ router.get(
   "/:id",
   authenticate,
   getDepartmentById
+);
+
+router.post(
+  "/:departmentId/assign-manager",
+  authenticate,
+  authorize("ADMIN"),
+  assignManager
 );
 
 export default router;

@@ -72,3 +72,61 @@ export const getDepartmentByIdService =
 
     return department;
 };
+
+export const assignManagerService =
+  async (
+    departmentId,
+    managerId
+  ) => {
+
+    const department =
+      await prisma.department.findUnique({
+        where: {
+          id: departmentId
+        }
+      });
+
+    if (!department) {
+      throw new Error(
+        "Department not found"
+      );
+    }
+
+    const manager =
+      await prisma.employee.findUnique({
+        where: {
+          id: managerId
+        },
+
+        include: {
+          user: true
+        }
+      });
+
+    if (!manager) {
+      throw new Error(
+        "Manager not found"
+      );
+    }
+
+    if (
+      manager.user.role !== "MANAGER"
+    ) {
+      throw new Error(
+        "Selected employee is not a manager"
+      );
+    }
+
+    const updatedDepartment =
+      await prisma.department.update({
+        where: {
+          id: departmentId
+        },
+
+        data: {
+          managerId
+        }
+      });
+
+    return updatedDepartment;
+};
