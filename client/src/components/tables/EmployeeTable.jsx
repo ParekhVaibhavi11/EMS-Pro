@@ -1,5 +1,6 @@
 function EmployeeTable({
-  employees
+  employees,
+  onSelectEmployee,
 }) {
 
   return (
@@ -8,7 +9,6 @@ function EmployeeTable({
       <table className="w-full">
 
         <thead>
-
           <tr className="border-b">
 
             <th className="text-left p-3">
@@ -28,7 +28,6 @@ function EmployeeTable({
             </th>
 
           </tr>
-
         </thead>
 
         <tbody>
@@ -37,7 +36,14 @@ function EmployeeTable({
             (employee) => (
               <tr
                 key={employee.id}
-                className="border-b hover:bg-gray-50"
+                onClick={() =>
+                  onSelectEmployee(employee.id)
+                }
+                className="
+                  border-b
+                  hover:bg-gray-50
+                  cursor-pointer
+                "
               >
 
                 <td className="p-3">

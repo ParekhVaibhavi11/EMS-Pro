@@ -12,6 +12,14 @@ from "../../api/employeeApi";
 import AddEmployeeModal
 from "../../components/forms/AddEmployeeModal";
 
+import EmployeeDetailsDrawer
+from "../../components/ui/EmployeeDetailsDrawer";
+
+import {
+  getEmployeeById
+}
+from "../../api/employeeApi";
+
 import { Search } from "lucide-react";
 
 function EmployeesPage() {
@@ -25,11 +33,41 @@ function EmployeesPage() {
   const [isModalOpen, setIsModalOpen] =
   useState(false);
 
+  const [selectedEmployee,
+  setSelectedEmployee] =
+    useState(null);
+
+  const [drawerOpen,
+  setDrawerOpen] =
+    useState(false);
+
   useEffect(() => {
 
     fetchEmployees();
 
   }, []);
+
+  const handleEmployeeClick =
+  async (id) => {
+
+    try {
+
+      const response =
+        await getEmployeeById(id);
+
+      setSelectedEmployee(
+        response.data
+      );
+
+      setDrawerOpen(true);
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
+
+  };
 
   const fetchEmployees =
     async () => {
@@ -102,6 +140,9 @@ function EmployeesPage() {
 
             <EmployeeTable
               employees={employees}
+              onSelectEmployee={
+                handleEmployeeClick
+              }
             />
 
           )}
@@ -116,6 +157,14 @@ function EmployeesPage() {
         }
         onEmployeeCreated={
           fetchEmployees
+        }
+      />
+
+      <EmployeeDetailsDrawer
+        employee={selectedEmployee}
+        isOpen={drawerOpen}
+        onClose={() =>
+          setDrawerOpen(false)
         }
       />
 

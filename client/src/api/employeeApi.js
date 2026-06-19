@@ -40,3 +40,23 @@ export const createEmployee =
 
     return response.data;
 };
+
+export const getEmployeeById =
+  async (id) => {
+
+    const token =
+      localStorage.getItem("token");
+
+    const response =
+      await api.get(
+        `/employees/${id}`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${token}`
+          }
+        }
+      );
+
+    return response.data;
+};
