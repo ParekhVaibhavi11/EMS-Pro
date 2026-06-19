@@ -30,6 +30,7 @@ model User {
 
   employee   Employee?
 
+
   @@map("users")
 }
 
@@ -40,18 +41,21 @@ model Employee {
   firstName     String
   lastName      String
   phone         String?
+  gender        String?
+  address       String?
 
   designation   String
   joiningDate   DateTime
 
   salary        Decimal
+  isActive      Boolean @default(true)
 
   userId        String   @unique
   departmentId  String?
 
   user          User       @relation(fields: [userId], references: [id])
   department    Department? @relation(fields: [departmentId], references: [id])
-
+  
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -59,14 +63,18 @@ model Employee {
 }
 
 model Department {
-  id          String   @id @default(cuid())
-  name        String   @unique
+  id          String      @id @default(cuid())
+
+  name        String      @unique
+
   description String?
+
+  isActive    Boolean     @default(true)
 
   employees   Employee[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
   @@map("departments")
 }
