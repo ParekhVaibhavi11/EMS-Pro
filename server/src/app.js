@@ -12,7 +12,8 @@ import managerRoutes
 from "./modules/manager/manager.routes.js";
 import attendanceRoutes
 from "./modules/attendance/attendance.routes.js";
-
+import leaveRoutes
+from "./modules/leave/leave.routes.js";
 
 const app = express();
 
@@ -46,6 +47,11 @@ app.use(
 app.use(
   "/api/attendance",
   attendanceRoutes
+);
+
+app.use(
+  "/api/leaves",
+  leaveRoutes
 );
 
 app.get("/", (req, res) => {

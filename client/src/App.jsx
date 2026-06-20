@@ -11,6 +11,9 @@ import DepartmentsPage
 from "./pages/admin/DepartmentsPage";
 import AttendancePage
 from "./pages/admin/AttendancePage";
+import LeavesPage
+from "./pages/admin/LeavesPage";
+
 
 
 function App() {
@@ -48,6 +51,10 @@ function App() {
         <Route
           path="/attendance"
           element={<AttendancePage />}
+        />
+        <Route
+          path="/leaves"
+          element={<LeavesPage />}
         />
 
       </Routes>
