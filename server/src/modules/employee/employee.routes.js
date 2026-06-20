@@ -3,7 +3,9 @@ import express from "express";
 import {
   createEmployee,
     getEmployees,
-    getEmployeeById
+    getEmployeeById,
+    updateEmployee,
+    deactivateEmployee
 } from "./employee.controller.js";
 
 import {
@@ -35,6 +37,20 @@ router.get(
   authenticate,
   authorize("ADMIN"),
   getEmployeeById
+);
+
+router.put(
+  "/:id",
+  authenticate,
+  authorize("ADMIN"),
+  updateEmployee
+);
+
+router.patch(
+  "/:id/deactivate",
+  authenticate,
+  authorize("ADMIN"),
+  deactivateEmployee
 );
 
 export default router;

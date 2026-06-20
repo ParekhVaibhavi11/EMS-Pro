@@ -133,4 +133,62 @@ export const getEmployeeByIdService =
     return employee;
 };
 
+export const updateEmployeeService =
+  async (id, data) => {
+
+    const employee =
+      await prisma.employee.findUnique({
+        where: { id }
+      });
+
+    if (!employee) {
+      throw new Error(
+        "Employee not found"
+      );
+    }
+
+    const updatedEmployee =
+      await prisma.employee.update({
+        where: { id },
+
+        data: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          phone: data.phone,
+          designation: data.designation,
+          salary: data.salary
+        },
+
+        include: {
+          user: true,
+          department: true
+        }
+      });
+
+    return updatedEmployee;
+};
+
+export const deactivateEmployeeService =
+  async (id) => {
+
+    const employee =
+      await prisma.employee.findUnique({
+        where: { id }
+      });
+
+    if (!employee) {
+      throw new Error(
+        "Employee not found"
+      );
+    }
+
+    return prisma.employee.update({
+      where: { id },
+
+      data: {
+        isActive: false
+      }
+    });
+};
+
   
