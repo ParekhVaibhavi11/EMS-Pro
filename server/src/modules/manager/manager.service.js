@@ -112,3 +112,59 @@ export const getManagersService =
 
     return managers;
 };
+
+export const updateManagerService =
+  async (id, data) => {
+
+    const manager =
+      await prisma.employee.findUnique({
+        where: { id },
+      });
+
+    if (!manager) {
+      throw new Error(
+        "Manager not found"
+      );
+    }
+
+    return prisma.employee.update({
+      where: { id },
+
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phone: data.phone,
+        designation: data.designation,
+        salary: data.salary,
+      },
+
+      include: {
+        user: true,
+        department: true,
+      },
+    });
+};
+
+export const deactivateManagerService =
+  async (id) => {
+
+    return prisma.employee.update({
+      where: { id },
+
+      data: {
+        isActive: false,
+      },
+    });
+};
+
+export const activateManagerService =
+  async (id) => {
+
+    return prisma.employee.update({
+      where: { id },
+
+      data: {
+        isActive: true,
+      },
+    });
+};

@@ -4,7 +4,10 @@ import {
 
 import {
   createManagerService,
-  getManagersService
+  getManagersService,
+  updateManagerService,
+  deactivateManagerService,
+  activateManagerService
 } from "./manager.service.js";
 
 export const createManager =
@@ -57,6 +60,85 @@ export const createManager =
       res.status(500).json({
         success: false,
         message: error.message
+      });
+
+    }
+
+  };
+
+  export const updateManager =
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await updateManagerService(
+          req.params.id,
+          req.body
+        );
+
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+
+    }
+
+  };
+
+  export const deactivateManager =
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await deactivateManagerService(
+          req.params.id
+        );
+
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+
+    }
+
+  };
+
+  export const activateManager =
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await activateManagerService(
+          req.params.id
+        );
+
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        success: false,
+        message: error.message,
       });
 
     }

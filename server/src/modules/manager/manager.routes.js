@@ -2,7 +2,10 @@ import express from "express";
 
 import {
   createManager,
-    getManagers
+    getManagers,
+    updateManager,
+    deactivateManager,
+    activateManager
 } from "./manager.controller.js";
 
 import {
@@ -27,6 +30,27 @@ router.get(
   authenticate,
   authorize("ADMIN"),
   getManagers
+);
+
+router.put(
+  "/:id",
+  authenticate,
+  authorize("ADMIN"),
+  updateManager
+);
+
+router.patch(
+  "/:id/deactivate",
+  authenticate,
+  authorize("ADMIN"),
+  deactivateManager
+);
+
+router.patch(
+  "/:id/activate",
+  authenticate,
+  authorize("ADMIN"),
+  activateManager
 );
 
 export default router;
