@@ -24,7 +24,7 @@ function DashboardLayout({
           setIsOpen={setIsOpen}
         />
 
-        <main className="p-6">
+        <main className="p-6 max-w-7xl">
           {children}
         </main>
 
