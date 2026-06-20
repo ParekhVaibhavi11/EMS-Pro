@@ -29,13 +29,27 @@ export const getDepartmentsService =
 
     const departments =
       await prisma.department.findMany({
+
         where: {
           isActive: true
+        },
+
+        include: {
+
+          manager: {
+            select: {
+              id: true,
+              firstName: true,
+              lastName: true
+            }
+          }
+
         },
 
         orderBy: {
           name: "asc"
         }
+
       });
 
     return departments;
@@ -51,6 +65,15 @@ export const getDepartmentByIdService =
         },
 
         include: {
+
+          manager: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            designation: true
+          }
+        },
           employees: {
             select: {
               id: true,
@@ -107,6 +130,14 @@ export const assignManagerService =
       throw new Error(
         "Manager not found"
       );
+    }
+
+    if (!manager.isActive) {
+
+      throw new Error(
+        "Cannot assign inactive manager"
+      );
+
     }
 
     if (

@@ -7,6 +7,8 @@ import EmployeesPage
 from "./pages/admin/EmployeesPage";
 import ManagersPage
 from "./pages/admin/ManagersPage";
+import DepartmentsPage
+from "./pages/admin/DepartmentsPage";
 
 
 function App() {
@@ -34,6 +36,11 @@ function App() {
         <Route
           path="/managers"
           element={<ManagersPage />}
+        />
+
+        <Route
+          path="/departments"
+          element={<DepartmentsPage />}
         />
 
       </Routes>
