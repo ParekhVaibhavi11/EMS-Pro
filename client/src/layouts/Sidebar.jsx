@@ -10,7 +10,7 @@ import {
   Settings,
   X
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const menuItems = [
   {
@@ -100,20 +100,37 @@ function Sidebar({
 
         </div>
 
-        <nav className="p-4 space-y-2">
+       <nav className="p-4 space-y-2">
 
           {menuItems.map((item) => (
-            <Link
-                key={item.name}
-                to={item.path}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-800 transition"
-              >
-                <item.icon size={18} />
 
-                <span>
-                  {item.name}
-                </span>
-              </Link>
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `
+                flex items-center gap-3
+                px-4 py-3
+                rounded-lg
+                transition
+
+                ${
+                  isActive
+                    ? "bg-blue-800 text-whit border-l-4 border-yellow-400"
+                    : "hover:bg-blue-800 text-white"
+                }
+                `
+              }
+            >
+
+              <item.icon size={18} />
+
+              <span>
+                {item.name}
+              </span>
+
+            </NavLink>
+
           ))}
 
         </nav>

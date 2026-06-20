@@ -191,4 +191,27 @@ export const deactivateEmployeeService =
     });
 };
 
+export const activateEmployeeService =
+  async (id) => {
+
+    const employee =
+      await prisma.employee.findUnique({
+        where: { id }
+      });
+
+    if (!employee) {
+      throw new Error(
+        "Employee not found"
+      );
+    }
+
+    return prisma.employee.update({
+      where: { id },
+
+      data: {
+        isActive: true
+      }
+    });
+};
+
   

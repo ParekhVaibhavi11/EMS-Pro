@@ -27,6 +27,10 @@ function EmployeeTable({
               Email
             </th>
 
+            <th className="text-left p-3">
+              Status
+            </th>
+
           </tr>
         </thead>
 
@@ -62,6 +66,30 @@ function EmployeeTable({
 
                 <td className="p-3">
                   {employee.user?.email}
+                </td>
+
+                <td className="p-3">
+
+                  <span
+                    className={`
+                      px-3 py-1
+                      rounded-full
+                      text-xs
+                      font-medium
+                      ${
+                        employee.isActive
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
+                      }
+                    `}
+                  >
+                    {
+                      employee.isActive
+                        ? "Active"
+                        : "Inactive"
+                    }
+                  </span>
+
                 </td>
 
               </tr>

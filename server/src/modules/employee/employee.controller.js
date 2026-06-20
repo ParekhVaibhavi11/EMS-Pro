@@ -3,7 +3,8 @@ import {
   getEmployeesService,
   getEmployeeByIdService,
   updateEmployeeService,
-  deactivateEmployeeService
+  deactivateEmployeeService,
+  activateEmployeeService
 } from "./employee.service.js";
 
 import {
@@ -128,6 +129,32 @@ export const createEmployee =
 
       const result =
         await deactivateEmployeeService(
+          req.params.id
+        );
+
+      res.status(200).json({
+        success: true,
+        data: result
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        success: false,
+        message: error.message
+      });
+
+    }
+
+  };
+
+  export const activateEmployee =
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await activateEmployeeService(
           req.params.id
         );
 

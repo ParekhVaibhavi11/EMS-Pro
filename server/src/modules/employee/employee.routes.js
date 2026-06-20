@@ -5,7 +5,8 @@ import {
     getEmployees,
     getEmployeeById,
     updateEmployee,
-    deactivateEmployee
+    deactivateEmployee,
+    activateEmployee
 } from "./employee.controller.js";
 
 import {
@@ -53,4 +54,10 @@ router.patch(
   deactivateEmployee
 );
 
+router.patch(
+  "/:id/activate",
+  authenticate,
+  authorize("ADMIN"),
+  activateEmployee
+);
 export default router;

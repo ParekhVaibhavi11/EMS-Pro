@@ -1,9 +1,18 @@
-import { X } from "lucide-react";
+
+
+import {
+  Pencil,
+  Trash2,
+  X
+} from "lucide-react";
 
 function EmployeeDetailsDrawer({
   employee,
   isOpen,
   onClose,
+  onEdit,
+  onDeactivate,
+  onActivate,
 }) {
 
   if (!isOpen || !employee)
@@ -151,7 +160,56 @@ function EmployeeDetailsDrawer({
           </div>
 
         </div>
+        <div className="flex justify-between items-center mt-10 pt-6 border-t">
 
+          <button
+            onClick={() => onEdit(employee)}
+            className="
+              flex items-center gap-2
+              bg-blue-900
+              text-white
+              px-5 py-3
+              rounded-lg
+              hover:bg-blue-600
+              transition
+            "
+          >
+            <Pencil size={18} />
+            Edit Employee
+          </button>
+
+         <button
+            onClick={() => {
+
+              if (employee.isActive) {
+                onDeactivate(employee.id);
+              } else {
+                onActivate(employee.id);
+              }
+
+            }}
+            className={`
+              flex items-center gap-2
+              px-5 py-3 rounded-lg text-white
+              transition
+
+              ${
+                employee.isActive
+                  ? "bg-red-600 hover:bg-red-700"
+                  : "bg-green-600 hover:bg-green-700"
+              }
+            `}
+          >
+            <Trash2 size={18} />
+
+            {
+              employee.isActive
+                ? "Deactivate"
+                : "Activate"
+            }
+          </button>
+
+        </div>
       </div>
 
     </>
