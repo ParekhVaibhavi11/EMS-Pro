@@ -54,10 +54,10 @@ model Employee {
   user       User        @relation(fields: [userId], references: [id])
   department Department? @relation("DepartmentEmployees", fields: [departmentId], references: [id])
 
-  managedDepartment Department? @relation("DepartmentManager")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  managedDepartment Department?  @relation("DepartmentManager")
+  attendances       Attendance[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
   @@map("employees")
 }
@@ -80,4 +80,26 @@ model Department {
   updatedAt DateTime @updatedAt
 
   @@map("departments")
+}
+
+model Attendance {
+  id String @id @default(cuid())
+
+  employeeId String
+
+  date DateTime
+
+  checkIn DateTime?
+
+  checkOut DateTime?
+
+  status String
+
+  employee Employee @relation(fields: [employeeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([employeeId, date])
+  @@map("attendance")
 }

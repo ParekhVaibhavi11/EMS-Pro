@@ -9,6 +9,8 @@ import ManagersPage
 from "./pages/admin/ManagersPage";
 import DepartmentsPage
 from "./pages/admin/DepartmentsPage";
+import AttendancePage
+from "./pages/admin/AttendancePage";
 
 
 function App() {
@@ -41,6 +43,11 @@ function App() {
         <Route
           path="/departments"
           element={<DepartmentsPage />}
+        />
+
+        <Route
+          path="/attendance"
+          element={<AttendancePage />}
         />
 
       </Routes>

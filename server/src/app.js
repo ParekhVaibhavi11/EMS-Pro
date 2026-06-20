@@ -10,7 +10,8 @@ import departmentRoutes
 from "./modules/department/department.routes.js";
 import managerRoutes
 from "./modules/manager/manager.routes.js";
-
+import attendanceRoutes
+from "./modules/attendance/attendance.routes.js";
 
 
 const app = express();
@@ -40,6 +41,11 @@ app.use(
 app.use(
   "/api/managers",
   managerRoutes
+);
+
+app.use(
+  "/api/attendance",
+  attendanceRoutes
 );
 
 app.get("/", (req, res) => {
