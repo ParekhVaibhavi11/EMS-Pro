@@ -5,6 +5,7 @@ import {
 import {
   createManagerService,
   getManagersService,
+  getManagerByIdService,
   updateManagerService,
   deactivateManagerService,
   activateManagerService
@@ -53,6 +54,41 @@ export const createManager =
         success: true,
         count: managers.length,
         data: managers
+      });
+
+    } catch (error) {
+
+      res.status(500).json({
+        success: false,
+        message: error.message
+      });
+
+    }
+
+  };
+
+  export const getManagerById =
+  async (req, res) => {
+
+    try {
+
+      const manager =
+        await getManagerByIdService(
+          req.params.id
+        );
+
+      if (!manager) {
+
+        return res.status(404).json({
+          success: false,
+          message: "Manager not found"
+        });
+
+      }
+
+      res.status(200).json({
+        success: true,
+        data: manager
       });
 
     } catch (error) {

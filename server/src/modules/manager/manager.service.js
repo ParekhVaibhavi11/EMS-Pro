@@ -89,12 +89,11 @@ export const getManagersService =
 
     const managers =
       await prisma.employee.findMany({
+
         where: {
           user: {
             role: "MANAGER"
-          },
-
-          isActive: true
+          }
         },
 
         include: {
@@ -112,6 +111,20 @@ export const getManagersService =
 
     return managers;
 };
+
+export const getManagerByIdService =
+  async (id) => {
+
+    return prisma.employee.findUnique({
+      where: { id },
+
+      include: {
+        user: true,
+        department: true
+      }
+    });
+
+  };
 
 export const updateManagerService =
   async (id, data) => {

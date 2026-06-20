@@ -3,6 +3,7 @@ import express from "express";
 import {
   createManager,
     getManagers,
+    getManagerById,
     updateManager,
     deactivateManager,
     activateManager
@@ -31,6 +32,13 @@ router.get(
   authorize("ADMIN"),
   getManagers
 );
+
+router.get(
+  "/:id",
+  authenticate,
+  authorize("ADMIN"), 
+  getManagerById);
+
 
 router.put(
   "/:id",
