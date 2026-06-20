@@ -13,7 +13,8 @@ import AttendancePage
 from "./pages/admin/AttendancePage";
 import LeavesPage
 from "./pages/admin/LeavesPage";
-
+import PayrollPage
+from "./pages/admin/PayrollPage";
 
 
 function App() {
@@ -55,6 +56,11 @@ function App() {
         <Route
           path="/leaves"
           element={<LeavesPage />}
+        />
+
+        <Route
+          path="/payroll"
+          element={<PayrollPage />}
         />
 
       </Routes>

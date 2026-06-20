@@ -57,6 +57,7 @@ model Employee {
   managedDepartment Department?  @relation("DepartmentManager")
   attendances       Attendance[]
   leaves            Leave[]
+  payrolls          Payroll[]
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
 
@@ -126,4 +127,33 @@ model Leave {
   updatedAt DateTime @updatedAt
 
   @@map("leaves")
+}
+
+model Payroll {
+  id String @id @default(cuid())
+
+  employeeId String
+
+  month Int
+  year  Int
+
+  basicSalary Decimal
+
+  bonus Decimal @default(0)
+
+  deductions Decimal @default(0)
+
+  tax Decimal @default(0)
+
+  netSalary Decimal
+
+  paymentStatus String @default("PENDING")
+
+  employee Employee @relation(fields: [employeeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([employeeId, month, year])
+  @@map("payrolls")
 }

@@ -14,6 +14,9 @@ import attendanceRoutes
 from "./modules/attendance/attendance.routes.js";
 import leaveRoutes
 from "./modules/leave/leave.routes.js";
+import payrollRoutes
+from "./modules/payroll/payroll.routes.js";
+
 
 const app = express();
 
@@ -52,6 +55,11 @@ app.use(
 app.use(
   "/api/leaves",
   leaveRoutes
+);
+
+app.use(
+  "/api/payroll",
+  payrollRoutes
 );
 
 app.get("/", (req, res) => {
