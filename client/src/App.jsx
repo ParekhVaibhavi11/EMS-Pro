@@ -20,6 +20,8 @@ from "./pages/admin/ReportsPage";
 import SettingsPage
 from "./pages/admin/SettingsPage";
 
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+
 
 function App() {
   return (
@@ -35,46 +37,101 @@ function App() {
 
         <Route
           path="/admin"
-          element={<AdminDashboard />}
+          element={
+            <ProtectedRoute
+              allowedRoles={["ADMIN"]}
+            >
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/employees"
-          element={<EmployeesPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+            <EmployeesPage />
+          </ProtectedRoute>
+          }
         />
 
         <Route
           path="/managers"
-          element={<ManagersPage />}
+          element={
+           <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+            <ManagersPage />
+          </ProtectedRoute>
+        }
         />
 
         <Route
           path="/departments"
-          element={<DepartmentsPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <DepartmentsPage />
+          </ProtectedRoute>
+          }
         />
 
         <Route
+
           path="/attendance"
-          element={<AttendancePage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <AttendancePage />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/leaves"
-          element={<LeavesPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <LeavesPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/payroll"
-          element={<PayrollPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <PayrollPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/reports"
-          element={<ReportsPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <ReportsPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/settings"
-          element={<SettingsPage />}
+          element={
+          <ProtectedRoute
+            allowedRoles={["ADMIN"]}
+          >
+          <SettingsPage />
+            </ProtectedRoute>
+          }
         />
 
       </Routes>
