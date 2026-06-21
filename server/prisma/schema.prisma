@@ -16,12 +16,12 @@ enum Role {
 model User {
   id String @id @default(cuid())
 
-  username String @unique
-  email    String @unique
-  password String
-
-  role     Role
-  isActive Boolean @default(true)
+  username     String  @unique
+  email        String  @unique
+  password     String
+  profileImage String?
+  role         Role
+  isActive     Boolean @default(true)
 
   lastLogin DateTime?
 
@@ -156,4 +156,22 @@ model Payroll {
 
   @@unique([employeeId, month, year])
   @@map("payrolls")
+}
+
+model SystemSettings {
+  id String @id @default(cuid())
+
+  companyName String @default("EMS Pro")
+
+  companyLogo String?
+
+  themeColor String @default("#1E3A8A")
+
+  emailNotifications Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
 }

@@ -18,7 +18,8 @@ import payrollRoutes
 from "./modules/payroll/payroll.routes.js";
 import reportRoutes
 from "./modules/report/report.routes.js";
-
+import settingsRoutes
+from "./modules/settings/settings.routes.js";
 
 const app = express();
 
@@ -67,6 +68,11 @@ app.use(
 app.use(
   "/api/reports",
   reportRoutes
+);
+
+app.use(
+  "/api/settings",
+  settingsRoutes
 );
 
 app.get("/", (req, res) => {
