@@ -15,6 +15,8 @@ import LeavesPage
 from "./pages/admin/LeavesPage";
 import PayrollPage
 from "./pages/admin/PayrollPage";
+import ReportsPage
+from "./pages/admin/ReportsPage";
 
 
 function App() {
@@ -61,6 +63,11 @@ function App() {
         <Route
           path="/payroll"
           element={<PayrollPage />}
+        />
+
+        <Route
+          path="/reports"
+          element={<ReportsPage />}
         />
 
       </Routes>

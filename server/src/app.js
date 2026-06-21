@@ -16,6 +16,8 @@ import leaveRoutes
 from "./modules/leave/leave.routes.js";
 import payrollRoutes
 from "./modules/payroll/payroll.routes.js";
+import reportRoutes
+from "./modules/report/report.routes.js";
 
 
 const app = express();
@@ -60,6 +62,11 @@ app.use(
 app.use(
   "/api/payroll",
   payrollRoutes
+);
+
+app.use(
+  "/api/reports",
+  reportRoutes
 );
 
 app.get("/", (req, res) => {
