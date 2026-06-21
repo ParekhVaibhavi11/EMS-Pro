@@ -3,10 +3,26 @@ import prisma from "../../config/prisma.js";
 import { generateToken } from "../../utils/jwt.js";
 
 export const loginUser = async (email, password) => {
-  const user = await prisma.user.findUnique({
+  const user =
+  await prisma.user.findFirst({
+
     where: {
-      email
+
+      OR: [
+
+        {
+          email
+        },
+
+        {
+          username:
+            email
+        }
+
+      ]
+
     }
+
   });
 
   if (!user) {
@@ -52,6 +68,9 @@ const safeUser = {
   email: user.email,
 
   role: user.role,
+
+  mustChangePassword:
+    user.mustChangePassword,
 
   profileImage:
     user.profileImage,

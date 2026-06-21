@@ -27,9 +27,16 @@ export const createManager =
         );
 
       res.status(201).json({
-        success: true,
-        data: result
-      });
+
+  success: true,
+
+  message:
+    "Manager Created",
+
+  data:
+    result
+
+});
 
     } catch (error) {
 

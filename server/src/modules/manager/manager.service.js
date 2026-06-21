@@ -29,28 +29,37 @@ export const createManagerService = async (
     `MGR${String(managerCount + 1)
       .padStart(3, "0")}`;
 
-  const temporaryPassword =
-    `${data.firstName}@123`;
+    const generatedPassword =
+  `${data.firstName}@123`;
 
-  const hashedPassword =
-    await bcrypt.hash(
-      temporaryPassword,
-      10
-    );
+const hashedPassword =
+  await bcrypt.hash(
+    generatedPassword,
+    10
+  );
 
-  const user =
-    await prisma.user.create({
-      data: {
-        username:
-          data.email.split("@")[0],
+const user =
+  await prisma.user.create({
 
-        email: data.email,
+    data: {
 
-        password: hashedPassword,
+      username:
+        employeeCode,
 
-        role: "MANAGER"
-      }
-    });
+      email:
+        data.email,
+
+      password:
+        hashedPassword,
+
+      role:
+        "MANAGER",
+
+     
+
+    }
+
+  });
 
   const manager =
     await prisma.employee.create({
@@ -74,14 +83,21 @@ export const createManagerService = async (
       }
     });
 
-  return {
-    manager,
-    credentials: {
-      email: user.email,
-      password:
-        temporaryPassword
-    }
-  };
+ return {
+
+  manager,
+
+  credentials: {
+
+    username:
+      employeeCode,
+
+    password:
+      generatedPassword
+
+  }
+
+};
 };
 
 export const getManagersService =

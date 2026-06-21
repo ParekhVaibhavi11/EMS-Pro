@@ -29,9 +29,16 @@ export const createEmployee =
         );
 
       res.status(201).json({
-        success: true,
-        data: result
-      });
+
+  success: true,
+
+  message:
+    "Employee Created",
+
+  data:
+    result
+
+});
 
     } catch (error) {
 

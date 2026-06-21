@@ -47,7 +47,6 @@ function LoginPage() {
         response.data.data;
 
       login(user, token);
-
       toast.success(
         "Login successful"
       );
@@ -115,7 +114,7 @@ function LoginPage() {
           <div>
 
             <label className="block text-sm font-medium mb-2">
-              Email
+              Email or Username
             </label>
 
             <div className="relative">
@@ -127,7 +126,7 @@ function LoginPage() {
 
               <input
                 type="email"
-                placeholder="Enter email"
+                placeholder="Email or Username"
                 className="w-full border border-gray-300 rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="email"
                 value={formData.email}

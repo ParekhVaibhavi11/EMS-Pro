@@ -14,6 +14,10 @@ function AddManagerModal({
   const [loading, setLoading] =
     useState(false);
 
+  const [credentials,
+setCredentials] =
+  useState(null);
+
   const [formData, setFormData] =
     useState({
       firstName: "",
@@ -43,20 +47,29 @@ function AddManagerModal({
 
         setLoading(true);
 
-        await createManager({
-          ...formData,
-          salary: Number(
-            formData.salary
-          ),
-        });
+        const response =
+  await createManager({
 
-        toast.success(
-          "Manager created successfully"
-        );
+    ...formData,
 
-        await onManagerCreated();
+    salary: Number(
+      formData.salary
+    ),
 
-        onClose();
+  });
+
+setCredentials(
+
+  response.data
+    .credentials
+
+);
+
+toast.success(
+  "Manager created successfully"
+);
+
+await onManagerCreated();
 
         setFormData({
           firstName: "",
@@ -88,6 +101,78 @@ function AddManagerModal({
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
 
       <div className="bg-white rounded-xl w-full max-w-xl">
+
+        {
+  credentials && (
+
+    <div className="p-6 border-b bg-green-50">
+
+      <h3 className="font-bold text-green-700 text-lg">
+
+        Manager Credentials Generated
+
+      </h3>
+
+      <div className="mt-4 space-y-2">
+
+        <p>
+
+          <strong>
+            Username:
+          </strong>
+
+          {" "}
+
+          {credentials.username}
+
+        </p>
+
+        <p>
+
+          <strong>
+            Password:
+          </strong>
+
+          {" "}
+
+          {credentials.password}
+
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        onClick={() => {
+
+          navigator.clipboard.writeText(
+
+`Username: ${credentials.username}
+Password: ${credentials.password}`
+
+          );
+
+          toast.success(
+            "Copied"
+          );
+
+        }}
+        className="
+          mt-4
+          bg-blue-900
+          text-white
+          px-4
+          py-2
+          rounded-lg
+        "
+      >
+        Copy Credentials
+      </button>
+
+    </div>
+
+  )
+}
 
         <div className="flex justify-between items-center p-5 border-b">
 

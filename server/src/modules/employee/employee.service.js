@@ -24,28 +24,36 @@ export const createEmployeeService = async (
   const employeeCode =
     `EMP${String(count + 1).padStart(3, "0")}`;
 
-  const temporaryPassword =
-    `${data.firstName}@123`;
+  const generatedPassword =
+  `${data.firstName}@123`;
 
-  const hashedPassword =
-    await bcrypt.hash(
-      temporaryPassword,
-      10
-    );
+const hashedPassword =
+  await bcrypt.hash(
+    generatedPassword,
+    10
+  );
 
-  const user =
-    await prisma.user.create({
-      data: {
-        username:
-          data.email.split("@")[0],
 
-        email: data.email,
+const user =
+  await prisma.user.create({
 
-        password: hashedPassword,
+    data: {
 
-        role: "EMPLOYEE"
-      }
-    });
+      username:
+        employeeCode,
+
+      email:
+        data.email,
+
+      password:
+        hashedPassword,
+
+      role:
+        "EMPLOYEE",
+
+    }
+
+  });
 
   const employee =
     await prisma.employee.create({
@@ -72,14 +80,21 @@ export const createEmployeeService = async (
         userId: user.id
       }
     });
-    return {
-    employee,
-    credentials: {
-      email: user.email,
-      password:
-        temporaryPassword
-    }
-  };
+   return {
+
+  employee,
+
+  credentials: {
+
+    username:
+      employeeCode,
+
+    password:
+      generatedPassword
+
+  }
+
+};
 };
 
 export const getEmployeesService =
