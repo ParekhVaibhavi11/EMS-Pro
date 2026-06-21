@@ -51,19 +51,17 @@ function LoginPage() {
       toast.success(
         "Login successful"
       );
-
       if (user.role === "ADMIN") {
         navigate("/admin");
       }
 
       if (user.role === "MANAGER") {
-        navigate("/manager");
+        navigate("/manager/dashboard");
       }
 
       if (user.role === "EMPLOYEE") {
-        navigate("/employee");
+        navigate("/employee/dashboard");
       }
-
     } catch (error) {
 
       toast.error(

@@ -22,6 +22,20 @@ from "./pages/admin/SettingsPage";
 
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 
+import EmployeeDashboard
+from "./pages/employee/EmployeeDashboard";
+
+import MyProfile
+from "./pages/employee/MyProfile";
+
+import MyAttendance
+from "./pages/employee/MyAttendance";
+
+import MyLeaves
+from "./pages/employee/MyLeaves";
+
+import MyPayroll
+from "./pages/employee/MyPayroll";
 
 function App() {
   return (
@@ -132,6 +146,31 @@ function App() {
           <SettingsPage />
             </ProtectedRoute>
           }
+        />
+
+        <Route
+          path="/employee/dashboard"
+          element={<EmployeeDashboard />}
+        />
+
+        <Route
+          path="/employee/profile"
+          element={<MyProfile />}
+        />
+
+        <Route
+          path="/employee/attendance"
+          element={<MyAttendance />}
+        />
+
+        <Route
+          path="/employee/leaves"
+          element={<MyLeaves />}
+        />
+
+        <Route
+          path="/employee/payroll"
+          element={<MyPayroll />}
         />
 
       </Routes>

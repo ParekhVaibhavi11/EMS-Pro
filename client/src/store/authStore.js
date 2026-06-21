@@ -25,6 +25,10 @@ const useAuthStore = create((set) => ({
   },
 
   logout: () => {
+
+  localStorage.clear();
+
+  window.location.href = "/";
     localStorage.removeItem("token");
     localStorage.removeItem(
       "user"

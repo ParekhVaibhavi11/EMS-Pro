@@ -21,6 +21,9 @@ from "./modules/report/report.routes.js";
 import settingsRoutes
 from "./modules/settings/settings.routes.js";
 
+import employeePortalRoutes
+from "./modules/employeePortal/employeePortal.routes.js";
+
 const app = express();
 
 app.use(express.json());
@@ -73,6 +76,12 @@ app.use(
 app.use(
   "/api/settings",
   settingsRoutes
+);
+
+
+app.use(
+  "/api/employee",
+  employeePortalRoutes
 );
 
 app.get("/", (req, res) => {
