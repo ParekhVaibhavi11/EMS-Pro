@@ -37,6 +37,13 @@ from "./pages/employee/MyLeaves";
 import MyPayroll
 from "./pages/employee/MyPayroll";
 
+import ManagerDashboard from "./pages/manager/ManagerDashboard";
+import ManagerProfile from "./pages/manager/ManagerProfile";
+import TeamPage from "./pages/manager/TeamPage";
+import ManagerAttendance from "./pages/manager/ManagerAttendance";
+import ManagerLeaves from "./pages/manager/ManagerLeaves";
+import ManagerReports from "./pages/manager/ManagerReports";
+
 function App() {
   return (
     <>
@@ -171,6 +178,37 @@ function App() {
         <Route
           path="/employee/payroll"
           element={<MyPayroll />}
+        />
+
+
+        <Route
+          path="/manager/dashboard"
+          element={<ManagerDashboard />}
+        />
+
+        <Route
+          path="/manager/profile"
+          element={<ManagerProfile />}
+        />
+
+        <Route
+          path="/manager/team"
+          element={<TeamPage />}
+        />
+
+        <Route
+          path="/manager/attendance"
+          element={<ManagerAttendance />}
+        />
+
+        <Route
+          path="/manager/leaves"
+          element={<ManagerLeaves />}
+        />
+
+        <Route
+          path="/manager/reports"
+          element={<ManagerReports />}
         />
 
       </Routes>
