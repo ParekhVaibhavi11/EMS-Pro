@@ -51,7 +51,9 @@ function EmployeeNavbar() {
 
           <p className="font-medium">
 
-            {user?.username}
+            {user?.firstName}
+            {" "}
+            {user?.lastName}
 
           </p>
 
@@ -63,15 +65,55 @@ function EmployeeNavbar() {
 
         </div>
 
-        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-900 font-semibold">
+        {
+        user?.profileImage ? (
 
-          {
-            user?.username
-              ?.charAt(0)
-              ?.toUpperCase()
-          }
+          <img
+            src={user.profileImage}
+            alt="profile"
+            className="
+              w-10
+              h-10
+              rounded-full
+              object-cover
+            "
+          />
 
-        </div>
+        ) : (
+
+          <div
+            className="
+              w-10
+              h-10
+              rounded-full
+              bg-blue-100
+              flex
+              items-center
+              justify-center
+              text-blue-900
+              font-semibold
+            "
+          >
+
+              {
+                user?.firstName
+                  ?.charAt(0)
+                  ?.toUpperCase()
+              }
+
+              {
+                user?.lastName
+                  ?.charAt(0)
+                  ?.toUpperCase()
+              }
+                
+            
+
+          </div>
+
+        )
+      }
+        
 
       </div>
 

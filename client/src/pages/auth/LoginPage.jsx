@@ -52,15 +52,29 @@ function LoginPage() {
         "Login successful"
       );
       if (user.role === "ADMIN") {
+
         navigate("/admin");
+
       }
 
-      if (user.role === "MANAGER") {
-        navigate("/manager/dashboard");
+      else if (
+        user.role === "MANAGER"
+      ) {
+
+        navigate(
+          "/manager/dashboard"
+        );
+
       }
 
-      if (user.role === "EMPLOYEE") {
-        navigate("/employee/dashboard");
+      else if (
+        user.role === "EMPLOYEE"
+      ) {
+
+        navigate(
+          "/employee/dashboard"
+        );
+
       }
     } catch (error) {
 

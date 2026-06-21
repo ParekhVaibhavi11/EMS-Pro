@@ -1,25 +1,41 @@
-import { loginUser } from "./auth.service.js";
+import { loginUser }
+from "./auth.service.js";
 
-export const login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+export const login =
+  async (req, res) => {
 
-    const result = await loginUser(
-      email,
-      password
-    );
+    try {
 
-    res.status(200).json({
-      success: true,
-      data: result
-    });
+      const {
+        email,
+        password
+      } = req.body;
 
-  } catch (error) {
+      const result =
+        await loginUser(
+          email,
+          password
+        );
 
-    res.status(401).json({
-      success: false,
-      message: error.message
-    });
+      res.status(200).json({
 
-  }
-};
+        success: true,
+
+        data: result
+
+      });
+
+    } catch (error) {
+
+      res.status(401).json({
+
+        success: false,
+
+        message:
+          error.message
+
+      });
+
+    }
+
+  };

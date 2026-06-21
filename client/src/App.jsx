@@ -20,7 +20,6 @@ from "./pages/admin/ReportsPage";
 import SettingsPage
 from "./pages/admin/SettingsPage";
 
-import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 import EmployeeDashboard
 from "./pages/employee/EmployeeDashboard";
@@ -43,6 +42,9 @@ import TeamPage from "./pages/manager/TeamPage";
 import ManagerAttendance from "./pages/manager/ManagerAttendance";
 import ManagerLeaves from "./pages/manager/ManagerLeaves";
 import ManagerReports from "./pages/manager/ManagerReports";
+
+import ProtectedRoute
+from "./routes/ProtectedRoute";
 
 function App() {
   return (
@@ -157,58 +159,124 @@ function App() {
 
         <Route
           path="/employee/dashboard"
-          element={<EmployeeDashboard />}
+          element={
+            <ProtectedRoute
+              allowedRoles={["EMPLOYEE"]}
+            >
+            <EmployeeDashboard />
+          </ProtectedRoute>
+        }
         />
 
         <Route
           path="/employee/profile"
-          element={<MyProfile />}
+          element={
+            <ProtectedRoute
+              allowedRoles={["EMPLOYEE"]}
+            >
+          <MyProfile />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/employee/attendance"
-          element={<MyAttendance />}
+          element={
+            <ProtectedRoute
+              allowedRoles={["EMPLOYEE"]}
+            >
+          <MyAttendance />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/employee/leaves"
-          element={<MyLeaves />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["EMPLOYEE"]}
+            >
+          <MyLeaves />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/employee/payroll"
-          element={<MyPayroll />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["EMPLOYEE"]}
+            >
+          <MyPayroll />
+            </ProtectedRoute>
+          }
         />
 
 
         <Route
           path="/manager/dashboard"
-          element={<ManagerDashboard />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <ManagerDashboard />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/manager/profile"
-          element={<ManagerProfile />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <ManagerProfile />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/manager/team"
-          element={<TeamPage />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <TeamPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/manager/attendance"
-          element={<ManagerAttendance />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <ManagerAttendance />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/manager/leaves"
-          element={<ManagerLeaves />}
+          element={
+          <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <ManagerLeaves />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/manager/reports"
-          element={<ManagerReports />}
+          element={
+            <ProtectedRoute
+              allowedRoles={["MANAGER"]}
+            >
+          <ManagerReports />
+            </ProtectedRoute>
+          }
         />
 
       </Routes>

@@ -1,44 +1,66 @@
-import { create } from "zustand";
+import { create }
+from "zustand";
 
-const useAuthStore = create((set) => ({
-  user:
-  JSON.parse(
-    localStorage.getItem("user")
-  ) || null,
-  token: localStorage.getItem("token") || null,
+const useAuthStore =
+  create((set) => ({
 
-  login: (user, token) => {
-    localStorage.setItem(
-      "token",
-      token
-    );
+    user: JSON.parse(
+      localStorage.getItem("user")
+    ) || null,
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify(user)
-    );
+    token:
+      localStorage.getItem(
+        "token"
+      ) || null,
 
-    set({
+    login: (
       user,
-      token,
-    });
-  },
+      token
+    ) => {
 
-  logout: () => {
+      localStorage.setItem(
+        "token",
+        token
+      );
 
-  localStorage.clear();
+      localStorage.setItem(
+        "user",
+        JSON.stringify(user)
+      );
 
-  window.location.href = "/";
-    localStorage.removeItem("token");
-    localStorage.removeItem(
-      "user"
-    );
+      set({
 
-    set({
-      user: null,
-      token: null,
-    });
-  },
-}));
+        user,
+
+        token
+
+      });
+
+    },
+
+    logout: () => {
+
+      localStorage.removeItem(
+        "token"
+      );
+
+      localStorage.removeItem(
+        "user"
+      );
+
+      set({
+
+        user: null,
+
+        token: null
+
+      });
+
+      window.location.href =
+        "/";
+
+    }
+
+  }));
 
 export default useAuthStore;

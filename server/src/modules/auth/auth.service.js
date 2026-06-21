@@ -24,11 +24,47 @@ export const loginUser = async (email, password) => {
 
   const token = generateToken(user);
 
- const safeUser = {
+  const employee =
+  await prisma.employee.findUnique({
+
+    where: {
+      userId: user.id
+    },
+
+    select: {
+
+      firstName: true,
+
+      lastName: true,
+
+      employeeCode: true
+
+    }
+
+  });
+
+const safeUser = {
+
   id: user.id,
+
   username: user.username,
+
   email: user.email,
-  role: user.role
+
+  role: user.role,
+
+  profileImage:
+    user.profileImage,
+
+  firstName:
+    employee?.firstName || null,
+
+  lastName:
+    employee?.lastName || null,
+
+  employeeCode:
+    employee?.employeeCode || null
+
 };
 
 return {
