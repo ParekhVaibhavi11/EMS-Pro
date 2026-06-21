@@ -121,6 +121,10 @@ model Leave {
 
   status String @default("PENDING")
 
+  approvedBy   String?
+  approvedRole String?
+  approvedAt   DateTime?
+
   employee Employee @relation(fields: [employeeId], references: [id])
 
   createdAt DateTime @default(now())

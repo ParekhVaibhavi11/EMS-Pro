@@ -85,15 +85,20 @@ export const approveLeave =
 
       const result =
         await approveLeaveService(
-          req.params.id
+
+          req.params.id,
+
+          req.user.id,
+
+          req.user.role
+
         );
 
       res.status(200).json({
 
         success: true,
 
-        data:
-          result
+        data: result
 
       });
 
@@ -119,15 +124,20 @@ export const rejectLeave =
 
       const result =
         await rejectLeaveService(
-          req.params.id
+
+          req.params.id,
+
+          req.user.id,
+
+          req.user.role
+
         );
 
       res.status(200).json({
 
         success: true,
 
-        data:
-          result
+        data: result
 
       });
 

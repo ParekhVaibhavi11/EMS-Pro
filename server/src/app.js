@@ -23,6 +23,8 @@ from "./modules/settings/settings.routes.js";
 
 import employeePortalRoutes
 from "./modules/employeePortal/employeePortal.routes.js";
+import managerPortalRoutes
+from "./modules/managerPortal/managerPortal.routes.js";
 
 const app = express();
 
@@ -82,6 +84,11 @@ app.use(
 app.use(
   "/api/employee",
   employeePortalRoutes
+);
+
+app.use(
+  "/api/manager",
+  managerPortalRoutes
 );
 
 app.get("/", (req, res) => {

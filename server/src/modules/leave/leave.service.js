@@ -35,16 +35,46 @@ export const getLeavesService =
 
     return prisma.leave.findMany({
 
+      where: {
+
+        employee: {
+
+          user: {
+
+            role: "MANAGER"
+
+          }
+
+        }
+
+      },
+
       include: {
 
         employee: {
 
           select: {
+
             id: true,
+
             employeeCode: true,
+
             firstName: true,
+
             lastName: true,
-            designation: true
+
+            designation: true,
+
+            user: {
+
+              select: {
+
+                role: true
+
+              }
+
+            }
+
           }
 
         }
@@ -52,7 +82,9 @@ export const getLeavesService =
       },
 
       orderBy: {
+
         createdAt: "desc"
+
       }
 
     });
@@ -60,14 +92,31 @@ export const getLeavesService =
 };
 
 export const approveLeaveService =
-  async (id) => {
+  async (
+    leaveId,
+    approverId,
+    approverRole
+  ) => {
 
     return prisma.leave.update({
 
-      where: { id },
+      where: {
+        id: leaveId
+      },
 
       data: {
-        status: "APPROVED"
+
+        status: "APPROVED",
+
+        approvedBy:
+          approverId,
+
+        approvedRole:
+          approverRole,
+
+        approvedAt:
+          new Date()
+
       }
 
     });
@@ -75,14 +124,31 @@ export const approveLeaveService =
 };
 
 export const rejectLeaveService =
-  async (id) => {
+  async (
+    leaveId,
+    approverId,
+    approverRole
+  ) => {
 
     return prisma.leave.update({
 
-      where: { id },
+      where: {
+        id: leaveId
+      },
 
       data: {
-        status: "REJECTED"
+
+        status: "REJECTED",
+
+        approvedBy:
+          approverId,
+
+        approvedRole:
+          approverRole,
+
+        approvedAt:
+          new Date()
+
       }
 
     });
